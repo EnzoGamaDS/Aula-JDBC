@@ -31,18 +31,28 @@ public class BancoDeDados {
 			System.out.println("Criou a tabela");
 			
 			String insert = "INSERT INTO ALUNOS " 
-					+ "(ID, MATRICULA, NOME) VALUES (1, '2','enzo');" ;		
+					+ "(ID, MATRICULA, NOME) VALUES (1, '200020242','enzo');" ;		
 			statement.execute(insert);
 			System.out.println("Inseriu na tabela");
 			
-			Statement select = connection.createStatement();
-			String sqldoSelect = "SELECT * FROM ALUNOS";
-			ResultSet resultSet = select.executeQuery(sqldoSelect);
+			String insert2 = "INSERT INTO ALUNOS " 
+					+ "(ID, MATRICULA, NOME) VALUES (2, '300030342','enzo gama');" ;		
+			statement.execute(insert2);
+			System.out.println("Inseriu na tabela");
 			
+			int variavel1 = 1;
+			String variavel2 = "'' OR 1=1";
+			
+			Statement select = connection.createStatement();
+			String sqldoSelect = "SELECT ID, MATRICULA, NOME FROM ALUNOS WHERE ID="+variavel1+ "AND MATRICULA="+variavel2;
+			ResultSet resultSet = select.executeQuery(sqldoSelect);
+			//resultSet.next no while faz correr 
 			while (resultSet.next()) {
-				System.out.println(resultSet.getString(3));
+				System.out.println(resultSet.getString(3));//pega a coluna 3 e faz um select nela
 			}
-		
+			statement.close();
+			connection.close();
+			
 		 
 			
 		} catch (SQLException e) {
